@@ -56,3 +56,12 @@ Route::prefix('/')->name('front.')->group(function () {
     //============================404============================
     Route::view('notfound', 'front.404')->name('notfound');
 });
+
+
+
+//============================Admin Routes============================
+Route::prefix('/admin')->name('admin.')->group(function () {
+
+    //============================index============================
+    Route::view('', 'admin.index')->name('index');
+});
