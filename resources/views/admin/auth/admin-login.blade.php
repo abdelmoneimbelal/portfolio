@@ -1,7 +1,7 @@
 <form class="mb-3" wire:submit.prevent='submit'>
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="text" class="form-control" placeholder="Enter your email" wire:model='email' autofocus autocomplete="on" 	/>
+        <input type="text" class="form-control" placeholder="Enter your email" wire:model='email' autofocus />
         @error('email')
             <span class="text-danger">{{ $message }}</span>
         @enderror
