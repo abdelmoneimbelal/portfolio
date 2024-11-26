@@ -69,6 +69,9 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         //============================settings============================
         Route::view('settings', 'admin.settings.index')->name('settings');
 
+        //============================skills============================
+        Route::view('skills', 'admin.skills.index')->name('skills');
+
     });
     //============================login============================
     Route::view('/login', 'admin.auth.login')->middleware('guest:admin')->name('login');

@@ -71,5 +71,12 @@
             </a>
         </li>
 
+        <li class="menu-item {{ Route::is('admin.skills') ? ' active' : '' }}">
+            <a href="{{ route('admin.skills') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cool"></i>
+                <div data-i18n="Analytics">Skills</div>
+            </a>
+        </li>
+
     </ul>
 </aside>
