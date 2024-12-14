@@ -18,3 +18,22 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+<script>
+     document.addEventListener("DOMContentLoaded", () => {
+        Livewire.hook('morph.updated', (el, component) => {
+            const mySuccessAlert = document.querySelector('.my-success-alert');
+
+            if (mySuccessAlert) {
+                setTimeout(() => {
+                    mySuccessAlert.style.display = 'none';
+                }, 2000);
+            }
+        });
+    });
+    
+    window.addEventListener('createModalToggle', event => {
+        $('#createModal').modal('toggle');
+    })
+</script>
