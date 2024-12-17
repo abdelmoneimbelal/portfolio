@@ -12,28 +12,24 @@
                         <div class="col mb-0">
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control" placeholder="Name" wire:model='name' />
-                            @error('name')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            @include('admin.error', ['property' => 'name'])
                         </div>
 
                         <div class="col mb-0">
                             <label class="form-label">Progress</label>
                             <input type="number" class="form-control" placeholder="10" min="1" max="100"
                                 wire:model='progress' />
-                            @error('progress')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                                @include('admin.error', ['property' => 'progress'])
                         </div>
 
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <button type="button" class="btn btn-outline-secondary d-flex" data-bs-dismiss="modal">
                         <i class="bx bx-x pe-1"></i> Close
                     </button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bx bx-save"></i> Update</button>
+                    <button type="submit" class="btn btn-outline-primary d-flex">
+                        <i class="bx bx-save pe-1"></i> Update</button>
                 </div>
             </form>
         </div>

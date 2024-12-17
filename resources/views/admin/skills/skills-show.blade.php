@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                <button type="button" class="btn btn-outline-secondary d-flex" data-bs-dismiss="modal">
                     <i class="bx bx-x pe-1"></i> Close
                 </button>
             </div>
