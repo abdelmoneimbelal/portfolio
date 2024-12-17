@@ -16,7 +16,8 @@
                       <i class="bx bx-x pe-1"></i>  Close
                     </button>
                     <button type="submit" class="btn btn-outline-danger d-flex">
-                       <i class="bx bx-trash pe-1"></i> Delete</button>
+                       <i class="bx bx-trash pe-1"></i> @include('admin.loading', ['buttonName' => 'Delete'])
+                    </button>
                 </div>
             </form>
         </div>

@@ -19,7 +19,7 @@
                             <label class="form-label">Progress</label>
                             <input type="number" class="form-control" placeholder="10" min="1" max="100"
                                 wire:model='progress' />
-                                @include('admin.error', ['property' => 'progress'])
+                            @include('admin.error', ['property' => 'progress'])
                         </div>
 
                     </div>
@@ -29,7 +29,8 @@
                         Close
                     </button>
                     <button type="submit" class="btn btn-primary">
-                        <i class="bx bx-save"></i> Add</button>
+                        <i class="bx bx-save"></i> @include('admin.loading', ['buttonName' => 'Add'])
+                    </button>
                 </div>
             </form>
         </div>

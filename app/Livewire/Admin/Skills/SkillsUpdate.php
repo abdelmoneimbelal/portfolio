@@ -12,6 +12,7 @@ class SkillsUpdate extends Component
 
     public function skillUpdate($id)
     {
+        // dd($id);
         $this->skill = Skill::find($id);
         $this->name = $this->skill->name;
         $this->progress = $this->skill->progress;
@@ -23,7 +24,7 @@ class SkillsUpdate extends Component
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:skills,name,' . $this->skill->id,
             'progress' => 'required|numeric',
         ];
     }
