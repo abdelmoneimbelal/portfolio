@@ -32,8 +32,20 @@
             }
         });
     });
-    
+
     window.addEventListener('createModalToggle', event => {
         $('#createModal').modal('toggle');
+    })
+
+    window.addEventListener('editModalToggle', event => {
+        $('#editModal').modal('toggle');
+    })
+
+    window.addEventListener('deleteModalToggle', event => {
+        $('#deleteModal').modal('toggle');
+    })
+
+    window.addEventListener('showModalToggle', event => {
+        $('#showModal').modal('toggle');
     })
 </script>

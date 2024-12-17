@@ -19,6 +19,12 @@
             </div>
         </div>
         <!--/ Basic Bootstrap Table -->
+
+        @livewire('admin.skills.skills-update')
+
+        @livewire('admin.skills.skills-show')
+
+        @livewire('admin.skills.skills-delete')
     </div>
     <!-- / Content -->
 @endsection
