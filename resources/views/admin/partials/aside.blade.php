@@ -64,13 +64,6 @@
             </a>
         </li>
 
-        <li class="menu-item {{ Route::is('admin.settings') ? ' active' : '' }}">
-            <a href="{{ route('admin.settings') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-cog"></i>
-                <div data-i18n="Analytics">Settings</div>
-            </a>
-        </li>
-
         <li class="menu-item {{ Route::is('admin.skills') ? ' active' : '' }}">
             <a href="{{ route('admin.skills') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cool"></i>
@@ -78,5 +71,18 @@
             </a>
         </li>
 
+        <li class="menu-item {{ Route::is('admin.subscribers') ? ' active' : '' }}">
+            <a href="{{ route('admin.subscribers') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-bell-off"></i>
+                <div data-i18n="Analytics">Subscribers</div>
+            </a>
+        </li>
+
+        <li class="menu-item {{ Route::is('admin.settings') ? ' active' : '' }}">
+            <a href="{{ route('admin.settings') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cog"></i>
+                <div data-i18n="Analytics">Settings</div>
+            </a>
+        </li>
     </ul>
 </aside>

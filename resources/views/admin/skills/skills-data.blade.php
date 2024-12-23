@@ -29,6 +29,11 @@
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#"
+                                            wire:click.prevent="$dispatch('skillShow', { id: {{ $record->id }} })">
+                                            <i class="bx bx-show me-1"></i>
+                                            Show
+                                        </a>
+                                        <a class="dropdown-item" href="#"
                                             wire:click.prevent="$dispatch('skillUpdate', { id: {{ $record->id }} })">
                                             <i class="bx bx-edit-alt me-1"></i>
                                             Edit
@@ -37,11 +42,6 @@
                                             wire:click.prevent="$dispatch('skillDelete', { id: {{ $record->id }} })">
                                             <i class="bx bx-trash me-1"></i>
                                             Delete
-                                        </a>
-                                        <a class="dropdown-item" href="#"
-                                            wire:click.prevent="$dispatch('skillShow', { id: {{ $record->id }} })">
-                                            <i class="bx bx-show me-1"></i>
-                                            Show
                                         </a>
                                     </div>
                                 </div>

@@ -1,11 +1,12 @@
 @extends('admin.master')
 
-@section('title', 'Skills')
+@section('title', 'Subscribers')
 
 @section('content')
     <!-- Content -->
+
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4">Skills</h4>
+        <h4 class="fw-bold py-3 mb-4">Subscribers</h4>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-sm btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">
             <i class="bx bx-plus"></i> Add new skill
