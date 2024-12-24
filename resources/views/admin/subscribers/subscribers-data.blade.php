@@ -1,6 +1,6 @@
 <div>
-    <div class="mb-3 w-25">
-        <input type="text" class="form-control" placeholder="Search..." wire:model.live='search' />
+    <div class="mb-3">
+        <input type="text" class="form-control w-25" placeholder="Search" wire:model.live='search'>
     </div>
 
     <div class="table-responsive text-nowrap">
@@ -8,19 +8,16 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th width="45%">Name</th>
-                        <th width="45%">Progress</th>
+                        <th width="90%">Email</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
                     @foreach ($data as $record)
                         <tr>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                <strong>{{ $record->name }}</strong>
+                            <td>
+                                <strong>{{ $record->email }}</strong>
                             </td>
-                            <td>{{ $record->progress }}</td>
-
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -29,17 +26,7 @@
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#"
-                                            wire:click.prevent="$dispatch('skillShow', { id: {{ $record->id }} })">
-                                            <i class="bx bx-show me-1"></i>
-                                            Show
-                                        </a>
-                                        <a class="dropdown-item" href="#"
-                                            wire:click.prevent="$dispatch('skillUpdate', { id: {{ $record->id }} })">
-                                            <i class="bx bx-edit-alt me-1"></i>
-                                            Edit
-                                        </a>
-                                        <a class="dropdown-item" href="#"
-                                            wire:click.prevent="$dispatch('skillDelete', { id: {{ $record->id }} })">
+                                            wire:click.prevent="$dispatch('subscriberDelete', { id: {{ $record->id }} })">
                                             <i class="bx bx-trash me-1"></i>
                                             Delete
                                         </a>
@@ -50,6 +37,7 @@
                     @endforeach
                 </tbody>
             </table>
+
             {{ $data->links() }}
         @else
             <div class="alert alert-danger text-center" role="alert">
@@ -57,5 +45,4 @@
             </div>
         @endif
     </div>
-
 </div>

@@ -7,24 +7,15 @@
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4">Subscribers</h4>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-sm btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">
-            <i class="bx bx-plus"></i> Add new skill
-        </button>
-        @livewire('admin.skills.skills-create')
         <!-- Basic Bootstrap Table -->
         <div class="card mb-4">
             <div class="card-body">
-                @livewire('admin.skills.skills-data')
+                @livewire('admin.subscribers.subscribers-data')
             </div>
         </div>
         <!--/ Basic Bootstrap Table -->
 
-        @livewire('admin.skills.skills-update')
-
-        @livewire('admin.skills.skills-show')
-
-        @livewire('admin.skills.skills-delete')
+        @livewire('admin.subscribers.subscribers-delete')
     </div>
     <!-- / Content -->
 @endsection
