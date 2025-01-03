@@ -78,6 +78,15 @@
             </a>
         </li>
 
+        <li class="menu-item {{ Route::is('admin.counters') ? ' active' : '' }}">
+            <a href="{{ route('admin.counters') }}" class="menu-link">
+                <box-icon name='stats'></box-icon>
+                <i class="menu-icon tf-icons bx bx-stats"></i>
+                <div data-i18n="Counters">Counters</div>
+            </a>
+        </li>
+
+
         <li class="menu-item {{ Route::is('admin.settings') ? ' active' : '' }}">
             <a href="{{ route('admin.settings') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cog"></i>

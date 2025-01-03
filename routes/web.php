@@ -73,7 +73,13 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::view('skills', 'admin.skills.index')->name('skills');
 
         //============================Subscribers============================
-        Route::view('subscribers', view: 'admin.subscribers.index')->name('subscribers');
+        Route::view('subscribers',  'admin.subscribers.index')->name('subscribers');
+
+        //============================Counters============================
+        Route::view('counters',  'admin.counters.index')->name('counters');
+
+        //============================Services============================
+        Route::view('services',  'admin.services.index')->name('services');
 
     });
     //============================login============================
