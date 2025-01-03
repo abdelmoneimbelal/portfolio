@@ -14,7 +14,7 @@ class Service extends Model
      *
      * @var string
      */
-    protected $table = '';
+    protected $table = 'services';
 
     /**
      * The primary key associated with the table.

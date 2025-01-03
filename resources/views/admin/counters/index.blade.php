@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('counters-active', 'active')
-@section('title', 'counters')
+@section('title', 'Counters')
 
 @section('content')
     <!-- Content -->
