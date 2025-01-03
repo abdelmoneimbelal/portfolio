@@ -21,8 +21,9 @@
             </div>
         </div>
 
-        {{-- @livewire('admin.services.services-update') --}}
-        {{-- @livewire('admin.services.services-delete') --}}
+        @livewire('admin.services.services-show')
+        @livewire('admin.services.services-update')
+        @livewire('admin.services.services-delete')
     </div>
     <!-- / Content -->
 @endsection
