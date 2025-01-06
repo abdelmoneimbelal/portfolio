@@ -93,6 +93,13 @@
             </a>
         </li>
 
+        <li class="menu-item {{ Route::is('admin.messages') ? ' active' : '' }}">
+            <a href="{{ route('admin.messages') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-message-alt-detail"></i>
+                <div data-i18n="Analytics">Messages</div>
+            </a>
+        </li>
+
         <li class="menu-item {{ Route::is('admin.settings') ? ' active' : '' }}">
             <a href="{{ route('admin.settings') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cog"></i>

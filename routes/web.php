@@ -81,6 +81,9 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         //============================Services============================
         Route::view('services',  'admin.services.index')->name('services');
 
+        //============================Messages============================
+        Route::view('messages',  'admin.messages.index')->name('messages');
+
     });
     //============================login============================
     Route::view('/login', 'admin.auth.login')->middleware('guest:admin')->name('login');
