@@ -60,21 +60,21 @@
         <li class="menu-item {{ Route::is('admin.index') ? ' active' : '' }} ">
             <a href="{{ route('admin.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Dashboard">Dashboard</div>
             </a>
         </li>
 
         <li class="menu-item {{ Route::is('admin.skills') ? ' active' : '' }}">
             <a href="{{ route('admin.skills') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cool"></i>
-                <div data-i18n="Analytics">Skills</div>
+                <div data-i18n="Skills">Skills</div>
             </a>
         </li>
 
         <li class="menu-item {{ Route::is('admin.subscribers') ? ' active' : '' }}">
             <a href="{{ route('admin.subscribers') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-bell-off"></i>
-                <div data-i18n="Analytics">Subscribers</div>
+                <div data-i18n="Subscribers">Subscribers</div>
             </a>
         </li>
 
@@ -89,21 +89,28 @@
         <li class="menu-item {{ Route::is('admin.services') ? ' active' : '' }}">
             <a href="{{ route('admin.services') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Analytics">Services</div>
+                <div data-i18n="Services">Services</div>
             </a>
         </li>
 
         <li class="menu-item {{ Route::is('admin.messages') ? ' active' : '' }}">
             <a href="{{ route('admin.messages') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-message-alt-detail"></i>
-                <div data-i18n="Analytics">Messages</div>
+                <div data-i18n="Messages">Messages</div>
+            </a>
+        </li>
+
+        <li class="menu-item {{ Route::is('admin.categories') ? ' active' : '' }}">
+            <a href="{{ route('admin.categories') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-category"></i>
+                <div data-i18n="Categories">Categories</div>
             </a>
         </li>
 
         <li class="menu-item {{ Route::is('admin.settings') ? ' active' : '' }}">
             <a href="{{ route('admin.settings') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cog"></i>
-                <div data-i18n="Analytics">Settings</div>
+                <div data-i18n="Settings">Settings</div>
             </a>
         </li>
     </ul>

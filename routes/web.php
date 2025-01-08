@@ -84,6 +84,12 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         //============================Messages============================
         Route::view('messages',  'admin.messages.index')->name('messages');
 
+        //============================Categories============================
+        Route::view('categories',  'admin.categories.index')->name('categories');
+
+        //============================Projects============================
+        Route::view('projects',  'admin.projects.index')->name('projects');
+
     });
     //============================login============================
     Route::view('/login', 'admin.auth.login')->middleware('guest:admin')->name('login');
