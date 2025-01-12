@@ -1,4 +1,4 @@
-<x-create-model title="Add New Project">
+<x-edit-model title="Add New Project">
     <div class="col-md-6 mb-0">
         <label class="form-label">Name</label>
         <input type="text" class="form-control" placeholder="Name" wire:model='name' />
@@ -16,13 +16,9 @@
         x-on:livewire-upload-progress="progress = $event.detail.progress">
         <label class="form-label">Image</label>
         <input type="file" class="form-control" wire:model='image' />
-        {{-- <div wire:loading wire:target="image">Uploading...</div> --}}
-        <!-- Progress Bar -->
-        <div x-show="uploading">
-            <progress max="100" x-bind:value="progress"></progress>
-        </div>
         @include('admin.error', ['property' => 'image'])
     </div>
+
     <div class="col-md-6 mb-0 mt-2">
         <label class="form-label">Category</label>
         <select class="form-control" wire:model='category_id'>
@@ -48,4 +44,4 @@
         <textarea type="number" class="form-control" placeholder="Description" wire:model='description'></textarea>
         @include('admin.error', ['property' => 'description'])
     </div>
-</x-create-model>
+</x-edit-model>

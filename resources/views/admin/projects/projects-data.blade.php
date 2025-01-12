@@ -33,19 +33,21 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#"
+                                        wire:click.prevent="$dispatch('projectShow', { id: {{ $record->id }} })">
+                                        <i class="bx bx-show me-1"></i>
+                                        Show
+                                    </a>
+
+                                    <a class="dropdown-item" href="#"
                                         wire:click.prevent="$dispatch('projectUpdate', { id: {{ $record->id }} })">
                                         <i class="bx bx-edit-alt me-1"></i>
                                         Edit
                                     </a>
+
                                     <a class="dropdown-item" href="#"
                                         wire:click.prevent="$dispatch('projectDelete', { id: {{ $record->id }} })">
                                         <i class="bx bx-trash me-1"></i>
                                         Delete
-                                    </a>
-                                    <a class="dropdown-item" href="#"
-                                        wire:click.prevent="$dispatch('projectShow', { id: {{ $record->id }} })">
-                                        <i class="bx bx-trash me-1"></i>
-                                        Show
                                     </a>
                                 </div>
                             </td>
