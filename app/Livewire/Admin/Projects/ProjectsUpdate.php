@@ -37,7 +37,8 @@ class ProjectsUpdate extends Component
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:projects,name,' . $this->project?->id,
+            'name' => 'required|string',
+            // 'name' => 'required|string|unique:projects,name,' . $this->project?->id,
             'description' => 'required|string',
             'link' => 'nullable|url',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
