@@ -23,12 +23,12 @@
                         data-wow-delay="0.1s">
                         <div class="rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="{{ asset('front') }}/img/portfolio-1.jpg"
+                                <img class="img-fluid w-100" src="{{ asset($project->image) }}"
                                     alt="">
                                 <div class="portfolio-overlay">
-                                    <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-1.jpg"
+                                    <a class="btn btn-square btn-outline-light mx-1" href="{{ asset($project->image) }}"
                                         data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i
+                                    <a class="btn btn-square btn-outline-light mx-1" href="{{ $project->link }}"><i
                                             class="fa fa-link"></i></a>
                                 </div>
                             </div>
