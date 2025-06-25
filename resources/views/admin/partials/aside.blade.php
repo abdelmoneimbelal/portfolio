@@ -64,6 +64,13 @@
             </a>
         </li>
 
+        <li class="menu-item {{ Route::is('admin.sliders') ? ' active' : '' }}">
+            <a href="{{ route('admin.sliders') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-slideshow"></i>
+                <div data-i18n="Sliders">Sliders</div>
+            </a>
+        </li>
+
         <li class="menu-item {{ Route::is('admin.skills') ? ' active' : '' }}">
             <a href="{{ route('admin.skills') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cool"></i>

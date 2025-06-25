@@ -1,0 +1,1 @@
+<x-delete-modal title="Delete Slider"></x-delete-modal>

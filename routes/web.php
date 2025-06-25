@@ -90,6 +90,9 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         //============================Projects============================
         Route::view('projects',  'admin.projects.index')->name('projects');
 
+        //============================Sliders============================
+        Route::view('sliders',  'admin.sliders.index')->name('sliders');
+
     });
     //============================login============================
     Route::view('/login', 'admin.auth.login')->middleware('guest:admin')->name('login');
