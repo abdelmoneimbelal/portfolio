@@ -17,6 +17,10 @@ class SettingSeeder extends Seeder
             'name' => 'Digital',
             'phone' => '123564789',
             'address' => 'New Cairo',
+            // 'logo' => 'storage/images/logo.png',
+            // 'favicon' => 'storage/images/favicon.png',
+            'description' => 'This is a description',
+            'is_active' => true,
         ]);
     }
 }

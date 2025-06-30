@@ -61,6 +61,49 @@
             <span class="text-danger">{{ $message }}</span>
         @enderror
     </div>
+    <div class="col-md-6 mt-2">
+        <label class="form-label">Logo</label>
+        <input type="file" class="form-control" wire:model='logo' />
+        @error('logo')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+        @if ($logo)
+            <div class="col-md-6 mt-2">
+                {{-- <label class="form-label">Logo Preview</label> --}}
+                <img src="{{ $logo->temporaryUrl() }}" alt="Logo" width="150" height="150" class="rounded">
+            </div>
+        @elseif ($settings->logo)
+            <div class="col-md-6 mt-2">
+                <img src="{{ asset($settings->logo) }}" alt="Logo" width="150" height="150" class="rounded">
+            </div>
+        @endif
+    </div>
+
+    <div class="col-md-6 mt-2">
+        <label class="form-label">Favicon</label>
+        <input type="file" class="form-control" wire:model='favicon' />
+        @error('favicon')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+        @if ($favicon)
+            <div class="col-md-6 mt-2">
+                {{-- <label class="form-label">Favicon Preview</label> --}}
+                <img src="{{ $favicon->temporaryUrl() }}" alt="Favicon" width="150" height="150" class="rounded">
+            </div>
+        @elseif ($settings->favicon)
+            <div class="col-md-6 mt-2">
+                <img src="{{ asset($settings->favicon) }}" alt="Favicon" width="150" height="150" class="rounded">
+            </div>
+        @endif
+    </div>
+
+    <div class="col-md-6 mt-2">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" wire:model='settings.description' rows="3"></textarea>
+        @error('settings.description')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
     <div class="col-md-12 mt-4">
         <button class="btn btn-primary">@include('admin.loading', ['buttonName' => 'Submit'])</button>
     </div>

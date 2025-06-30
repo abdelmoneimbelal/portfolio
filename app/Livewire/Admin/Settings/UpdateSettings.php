@@ -4,10 +4,13 @@ namespace App\Livewire\Admin\Settings;
 
 use App\Models\Setting;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class UpdateSettings extends Component
 {
+    use WithFileUploads;
     public $settings;
+    public $logo, $favicon;
 
     public function mount()
     {
@@ -25,13 +28,32 @@ class UpdateSettings extends Component
             'settings.twitter' => 'nullable|url',
             'settings.linkedin' => 'nullable|url',
             'settings.instagram' => 'nullable|url',
+            'settings.description' => 'nullable|string|min:10',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
     public function submit()
     {
-        $this->validate();
-        $this->settings->save();
+        $data = $this->validate();
+        if ($this->logo) {
+            $logoName = time() . '.' . $this->logo->getClientOriginalExtension();
+            $this->logo->storeAs('images', $logoName, 'public');
+            $data['logo'] = 'storage/images/' . $logoName;
+        } else {
+            // keep the old image if no new image uploaded
+            unset($data['logo']);
+        }
+        if ($this->favicon) {
+            $faviconName = time() . '.' . $this->favicon->getClientOriginalExtension();
+            $this->favicon->storeAs('images', $faviconName, 'public');
+            $data['favicon'] = 'storage/images/' . $faviconName;
+        } else {
+            // keep the old image if no new image uploaded
+            unset($data['favicon']);
+        }
+        $this->settings->update($data);
         session()->flash('message', 'Settings Updated Successfully');
     }
 

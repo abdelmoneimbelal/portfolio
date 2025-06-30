@@ -21,14 +21,14 @@
         <div class="col-md-12 mb-3">
             <label class="form-label">New Image Preview</label>
             <div class="my-2">
-                <img src="{{ $image->temporaryUrl() }}" width="150" height="150px" class="rounded">
+                <img src="{{ $image->temporaryUrl() }}" width="150" height="150" class="rounded">
             </div>
         </div>
     @elseif ($slider && $slider->image)
         <div class="col-md-12 mb-3">
             <label class="form-label">Current Image</label>
             <div class="my-2">
-                <img src="{{ asset($slider->image) }}" width="150" height="150px" class="rounded">
+                <img src="{{ asset($slider->image) }}" width="150" height="150" class="rounded">
             </div>
         </div>
     @endif
