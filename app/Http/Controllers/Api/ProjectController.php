@@ -27,4 +27,14 @@ class ProjectController extends Controller
         
         return ApiResponse::sendResponse(200, 'No projects found', []);
     }
+
+    //show project by id
+    public function show($id)
+    {
+        $project = Project::find($id);
+        
+        if ($project) {
+            return ApiResponse::sendResponse(200, 'Retrieve project data successfully', new ProjectResource($project));
+        }
+    }
 } 

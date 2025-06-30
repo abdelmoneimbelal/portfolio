@@ -29,4 +29,5 @@ Route::get('sliders', SliderController::class);
 Route::get('services', ServiceController::class);
 Route::get('counters', CounterController::class);
 Route::get('projects', ProjectController::class);
+Route::get('projects/{id}', [ProjectController::class, 'show']);
 Route::get('categories', CategoryController::class);
