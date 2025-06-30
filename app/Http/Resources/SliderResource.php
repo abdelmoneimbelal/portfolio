@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SettingResoures extends JsonResource
+class SliderResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,19 +17,12 @@ class SettingResoures extends JsonResource
         return [
             // 'id'          => $this->id,
             'name'        => $this->name,
-            'email'       => $this->email,
-            'phone'       => $this->phone,
-            'address'     => $this->address,
-            'logo'        => $this->logo,
-            'favicon'     => $this->favicon, 
             'description' => $this->description,
-            'facebook'    => $this->facebook,
-            'instagram'   => $this->instagram,
-            'twitter'     => $this->twitter,
-            'linkedin'    => $this->linkedin,
+            'image'       => $this->image,
+            'link'        => $this->link,
             'is_active'   => $this->is_active,
             'created_at'  => $this->created_at->format('d-m-Y H:i:s'),
             'updated_at'  => $this->updated_at->format('d-m-Y H:i:s'),
         ];
     }
-}
+} 
