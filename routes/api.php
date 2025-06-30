@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\CounterController;
+use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,5 @@ Route::get('settings', SettingController::class);
 Route::get('sliders', SliderController::class);
 Route::get('services', ServiceController::class);
 Route::get('counters', CounterController::class);
+Route::get('projects', ProjectController::class);
+Route::get('categories', CategoryController::class);
