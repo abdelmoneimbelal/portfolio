@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\SliderController;
+use App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\CounterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,5 @@ use App\Http\Controllers\Api\SliderController;
 
 Route::get('settings', SettingController::class);
 Route::get('sliders', SliderController::class);
+Route::get('services', ServiceController::class);
+Route::get('counters', CounterController::class);
