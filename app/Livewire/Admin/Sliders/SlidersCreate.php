@@ -19,7 +19,7 @@ class SlidersCreate extends Component
             'description' => 'required|string|min:10',
             'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'link' => 'required|url',
-            'is_active' => 'required|boolean',
+            'is_active' => 'boolean',
         ];
     }
 
@@ -31,6 +31,7 @@ class SlidersCreate extends Component
         $this->image->storeAs('images', $imageName, 'public');
         // save data in db
         $data['image'] = 'storage/images/' . $imageName;
+        $data['is_active'] = (bool) $this->is_active;
         Slider::create($data);
         $this->reset(['name', 'description', 'image', 'link']);
         $this->is_active = true;

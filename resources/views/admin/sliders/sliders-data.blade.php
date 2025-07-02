@@ -45,7 +45,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if($record->is_active)
+                                @if((bool) $record->is_active)
                                     <span class="badge bg-success">Active</span>
                                 @else
                                     <span class="badge bg-danger">Inactive</span>

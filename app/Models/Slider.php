@@ -57,7 +57,7 @@ class Slider extends Model
      * @var array
      */
     protected $casts = [
-        // 'status' => Status::class,
+        'is_active' => 'boolean',
     ];
 
     ##--------------------------------- RELATIONSHIPS
@@ -72,12 +72,12 @@ class Slider extends Model
     ##--------------------------------- SCOPES
     public function scopeActive($query)
     {
-        return $query->where('is_active', true);
+        return $query->where('is_active', 1);
     }
     
     public function scopeInactive($query)
     {
-        return $query->where('is_active', false);
+        return $query->where('is_active', 0);
     }
 
 

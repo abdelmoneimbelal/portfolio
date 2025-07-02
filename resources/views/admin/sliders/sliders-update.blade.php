@@ -42,7 +42,11 @@
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" wire:model='is_active' id="is_active_edit">
             <label class="form-check-label" for="is_active_edit">
-                <span x-text="$wire.is_active ? 'Active' : 'Inactive'"></span>
+                @if($is_active)
+                    Active
+                @else
+                    Inactive
+                @endif
             </label>
         </div>
         @include('admin.error', ['property' => 'is_active'])
