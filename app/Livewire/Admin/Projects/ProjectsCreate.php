@@ -12,7 +12,7 @@ class ProjectsCreate extends Component
 {
     use WithFileUploads;
 
-    public $name, $description, $link, $image, $category_id, $categories;
+    public $name, $description, $link, $image, $category_id, $categories, $gallery_images = [];
 
     public function mount()
     {
@@ -27,6 +27,7 @@ class ProjectsCreate extends Component
             'link' => 'nullable|url',
             'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'category_id' => 'required',
+            'gallery_images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ];
     }
 
@@ -39,14 +40,34 @@ class ProjectsCreate extends Component
 
     public function submit()
     {
+        // Check if gallery images exceed limit
+        if (!empty($this->gallery_images) && count($this->gallery_images) > 6) {
+            session()->flash('error', 'Maximum 6 gallery images allowed.');
+            return;
+        }
+        
         $data = $this->validate($this->rules(), [], $this->attributes());
         // save image on my project
         $imageName = time() . '.' . $this->image->getClientOriginalExtension();
         $this->image->storeAs('images', $imageName, 'public');
         // save data in db
         $data['image'] = 'storage/images/' . $imageName;
-        Project::create($data);
-        $this->reset(['name', 'description', 'link', 'image', 'category_id']);
+        $project = Project::create($data);
+        
+        // Save gallery images
+        if (!empty($this->gallery_images)) {
+            foreach ($this->gallery_images as $index => $galleryImage) {
+                $galleryImageName = time() . '_' . $index . '.' . $galleryImage->getClientOriginalExtension();
+                $galleryImage->storeAs('images', $galleryImageName, 'public');
+                
+                $project->images()->create([
+                    'image' => 'storage/images/' . $galleryImageName,
+                    'sort_order' => $index
+                ]);
+            }
+        }
+        
+        $this->reset(['name', 'description', 'link', 'image', 'category_id', 'gallery_images']);
         // hide modal
         $this->dispatch('createModalToggle');
         // refresh skills data component

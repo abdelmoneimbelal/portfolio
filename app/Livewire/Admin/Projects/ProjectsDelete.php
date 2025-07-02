@@ -21,8 +21,19 @@ class ProjectsDelete extends Component
 
     public function submit()
     {
+        // delete gallery images
+        foreach ($this->project->images as $galleryImage) {
+            if (file_exists($galleryImage->image)) {
+                unlink($galleryImage->image);
+            }
+        }
+        
+        // delete main image
+        if (file_exists($this->project->image)) {
+            unlink($this->project->image);
+        }
+        
         // delete record
-        unlink($this->project->image);
         $this->project->delete();
         $this->reset('project');
         // hide modal

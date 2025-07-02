@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class ProjectImage extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Project extends Model
      *
      * @var string
      */
-    protected $table = 'projects';
+    protected $table = 'project_images';
 
     /**
      * The primary key associated with the table.
@@ -57,20 +57,14 @@ class Project extends Model
      * @var array
      */
     protected $casts = [
-        // 'status' => Status::class,
+        //
     ];
 
     ##--------------------------------- RELATIONSHIPS
-    public function category()
+    public function project()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Project::class);
     }
-
-    public function images()
-    {
-        return $this->hasMany(ProjectImage::class)->orderBy('sort_order');
-    }
-
 
     ##--------------------------------- ATTRIBUTES
 
@@ -79,11 +73,7 @@ class Project extends Model
 
 
     ##--------------------------------- SCOPES
-    // public function scopeActive($query)
-    // {
-    //     $query->where('status', Status::ACTIVE);
-    // }
 
 
     ##--------------------------------- ACCESSORS & MUTATORS
-}
+} 

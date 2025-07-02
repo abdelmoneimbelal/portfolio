@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\ProjectImageResource;
 
-class ProjectResource extends JsonResource
+class ProjectDetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -25,7 +25,7 @@ class ProjectResource extends JsonResource
                 'id'   => $this->category->id ?? null,
                 'name' => $this->category->name ?? null,
             ],
-            // 'project_images' => ProjectImageResource::collection($this->images),
+            'project_images' => ProjectImageResource::collection($this->images),
             'created_at'  => $this->created_at->format('d-m-Y H:i:s'),
             'updated_at'  => $this->updated_at->format('d-m-Y H:i:s'),
         ];

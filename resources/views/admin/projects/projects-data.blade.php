@@ -8,9 +8,10 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th width="40%">Name</th>
-                        <th width="25%">Category</th>
-                        <th width="25%">Image</th>
+                        <th width="30%">Name</th>
+                        <th width="20%">Category</th>
+                        <th width="20%">Image</th>
+                        <th width="20%">Gallery</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -24,7 +25,21 @@
                                 {{ $record->category?->name }}
                             </td>
                             <td>
-                                <img src="{{ asset($record->image) }}" width="50px" height="50px">
+                                <img src="{{ asset($record->image) }}" width="50" height="50" class="rounded">
+                            </td>
+                            <td>
+                                @if($record->images->count() > 0)
+                                    <div class="d-flex flex-wrap gap-1">
+                                        @foreach($record->images->take(3) as $galleryImage)
+                                            <img src="{{ asset($galleryImage->image) }}" width="30" height="30" class="rounded">
+                                        @endforeach
+                                        @if($record->images->count() > 3)
+                                            <span class="badge bg-secondary">+{{ $record->images->count() - 3 }}</span>
+                                        @endif
+                                    </div>
+                                @else
+                                    <span class="text-muted">No gallery</span>
+                                @endif
                             </td>
                             <td>
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"

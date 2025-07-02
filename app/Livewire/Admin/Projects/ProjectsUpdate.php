@@ -12,7 +12,7 @@ class ProjectsUpdate extends Component
 {
     use WithFileUploads;
 
-    public $project, $name, $description, $link, $image, $category_id, $categories;
+    public $project, $name, $description, $link, $image, $category_id, $categories, $gallery_images = [];
 
     public function mount()
     {
@@ -43,6 +43,7 @@ class ProjectsUpdate extends Component
             'link' => 'nullable|url',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'category_id' => 'required',
+            'gallery_images.*' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ];
     }
 
@@ -55,6 +56,12 @@ class ProjectsUpdate extends Component
 
     public function submit()
     {
+        // Check if gallery images exceed limit
+        if (!empty($this->gallery_images) && count($this->gallery_images) > 6) {
+            session()->flash('error', 'Maximum 6 gallery images allowed.');
+            return;
+        }
+        
         $data = $this->validate($this->rules(), [], $this->attributes());
         // check if project has image -> delete previous image -> save new image
         if ($this->image) {
@@ -65,6 +72,29 @@ class ProjectsUpdate extends Component
         } else {
             unset($data['image']);
         }
+        
+        // Save gallery images if new ones are uploaded
+        if (!empty($this->gallery_images)) {
+            // Delete existing gallery images
+            foreach ($this->project->images as $existingImage) {
+                if (file_exists($existingImage->image)) {
+                    unlink($existingImage->image);
+                }
+            }
+            $this->project->images()->delete();
+            
+            // Save new gallery images
+            foreach ($this->gallery_images as $index => $galleryImage) {
+                $galleryImageName = time() . '_' . $index . '.' . $galleryImage->getClientOriginalExtension();
+                $galleryImage->storeAs('images', $galleryImageName, 'public');
+                
+                $this->project->images()->create([
+                    'image' => 'storage/images/' . $galleryImageName,
+                    'sort_order' => $index
+                ]);
+            }
+        }
+        
         // save data in db
         $this->project->update($data);
         // hide modal

@@ -7,6 +7,7 @@ use App\Helpers\ApiResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProjectResource;
+use App\Http\Resources\ProjectDetailsResource;
 
 class ProjectController extends Controller
 {
@@ -31,10 +32,35 @@ class ProjectController extends Controller
     //show project by id
     public function show($id)
     {
-        $project = Project::find($id);
+        $project = Project::with(['category', 'images'])->find($id);
         
         if ($project) {
-            return ApiResponse::sendResponse(200, 'Retrieve project data successfully', new ProjectResource($project));
+            return ApiResponse::sendResponse(200, 'Retrieve project data successfully', new ProjectDetailsResource($project));
         }
+        
+        return ApiResponse::sendResponse(404, 'Project not found', null);
+    }
+
+    //get project images by project id
+    public function images($id)
+    {
+        $project = Project::with('images')->find($id);
+        
+        if ($project) {
+            return ApiResponse::sendResponse(
+                200, 
+                'Retrieve project images successfully', 
+                $project->images->map(function ($image) {
+                    return [
+                        'id' => $image->id,
+                        'image' => $image->image,
+                        'sort_order' => $image->sort_order,
+                        'created_at' => $image->created_at->format('d-m-Y H:i:s'),
+                    ];
+                })
+            );
+        }
+        
+        return ApiResponse::sendResponse(404, 'Project not found', null);
     }
 } 

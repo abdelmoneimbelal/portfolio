@@ -35,7 +35,49 @@
 
     @if ($image)
         <div class="my-4">
-            <img src="{{ $image->temporaryUrl() }}" width="150" height="150px">
+            <img src="{{ $image->temporaryUrl() }}" width="150" height="150" class="rounded">
+        </div>
+    @endif
+
+    <div class="col-md-12 mb-3 mt-2" x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true"
+        x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false"
+        x-on:livewire-upload-error="uploading = false"
+        x-on:livewire-upload-progress="progress = $event.detail.progress">
+        <label class="form-label">Gallery Images (Max 6 images)</label>
+        <input type="file" class="form-control" wire:model='gallery_images' multiple />
+        <!-- Progress Bar -->
+        <div x-show="uploading">
+            <progress max="100" x-bind:value="progress"></progress>
+        </div>
+        <small class="text-muted">You can select multiple images. Maximum 6 images allowed. Leave empty to keep current gallery.</small>
+        @include('admin.error', ['property' => 'gallery_images.*'])
+    </div>
+
+    @if (!empty($gallery_images))
+        <div class="col-md-12 mb-3">
+            <label class="form-label">New Gallery Preview</label>
+            <div class="row">
+                @foreach ($gallery_images as $index => $galleryImage)
+                    <div class="col-md-4 mb-2">
+                        <img src="{{ $galleryImage->temporaryUrl() }}" width="150" height="150" class="rounded">
+                        <small class="d-block text-muted">Image {{ $index + 1 }}</small>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
+    @if ($project && $project->images->count() > 0)
+        <div class="col-md-12 mb-3">
+            <label class="form-label">Current Gallery</label>
+            <div class="row">
+                @foreach ($project->images as $index => $galleryImage)
+                    <div class="col-md-4 mb-2">
+                        <img src="{{ asset($galleryImage->image) }}" width="150" height="150" class="rounded">
+                        <small class="d-block text-muted">Image {{ $index + 1 }}</small>
+                    </div>
+                @endforeach
+            </div>
         </div>
     @endif
 
