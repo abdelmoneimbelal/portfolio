@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\CounterController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\AboutUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,4 @@ Route::get('projects/{id}', [ProjectController::class, 'show']);
 Route::get('projects/{id}/images', [ProjectController::class, 'images']);
 Route::get('categories', CategoryController::class);
 Route::post('messages', MessageController::class);
+Route::get('about-us', AboutUsController::class);

@@ -121,6 +121,14 @@
             </a>
         </li>
 
+        <!-- about us -->
+        <li class="menu-item {{ Route::is('admin.about-us') ? ' active' : '' }}">
+            <a href="{{ route('admin.about-us') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-info-circle"></i>
+                <div data-i18n="About Us">About Us</div>
+            </a>
+        </li>
+
         <li class="menu-item {{ Route::is('admin.settings') ? ' active' : '' }}">
             <a href="{{ route('admin.settings') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cog"></i>
