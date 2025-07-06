@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\CounterController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,4 @@ Route::get('projects', ProjectController::class);
 Route::get('projects/{id}', [ProjectController::class, 'show']);
 Route::get('projects/{id}/images', [ProjectController::class, 'images']);
 Route::get('categories', CategoryController::class);
+Route::post('messages', MessageController::class);
