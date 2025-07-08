@@ -90,6 +90,9 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         //============================Categories============================
         Route::view('categories',  'admin.categories.index')->name('categories');
 
+        //============================Our Clients============================
+        Route::view('our-clients',  'admin.our-clients.index')->name('our-clients');
+
         //============================Projects============================
         Route::view('projects',  'admin.projects.index')->name('projects');
 

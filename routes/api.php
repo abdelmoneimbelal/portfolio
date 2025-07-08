@@ -1,15 +1,17 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AboutUsController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CounterController;
+use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\OurClientController;
+use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\ServiceController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\SliderController;
-use App\Http\Controllers\Api\ServiceController;
-use App\Http\Controllers\Api\CounterController;
-use App\Http\Controllers\Api\ProjectController;
-use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\MessageController;
-use App\Http\Controllers\Api\AboutUsController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +38,4 @@ Route::get('projects/{id}/images', [ProjectController::class, 'images']);
 Route::get('categories', CategoryController::class);
 Route::post('messages', MessageController::class);
 Route::get('about-us', AboutUsController::class);
+Route::get('our-clients', OurClientController::class);

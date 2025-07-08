@@ -129,6 +129,13 @@
             </a>
         </li>
 
+        <li class="menu-item {{ Route::is('admin.our-clients') ? ' active' : '' }}">
+            <a href="{{ route('admin.our-clients') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-buildings"></i>
+                <div data-i18n="Our Clients">Our Clients</div>
+            </a>
+        </li>
+
         <li class="menu-item {{ Route::is('admin.settings') ? ' active' : '' }}">
             <a href="{{ route('admin.settings') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cog"></i>

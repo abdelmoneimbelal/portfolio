@@ -1,0 +1,1 @@
+<x-delete-modal title="Delete Our Client"></x-delete-modal> 
