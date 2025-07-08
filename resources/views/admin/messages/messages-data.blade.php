@@ -10,6 +10,7 @@
                     <tr>
                         <th width="30%">Name</th>
                         <th width="30%">Email</th>
+                        <th width="30%">Phone</th>
                         <th width="20%">Subject</th>
                         <th width="10%">Status</th>
                         <th>Actions</th>
@@ -22,6 +23,7 @@
                                 <strong>{{ $record->name }}</strong>
                             </td>
                             <td>{{ $record->email }}</td>
+                            <td>{{ $record->phone }}</td>
                             <td>{{ $record->subject }}</td>
                             <td>
                                 <span class="{{ $record->status == '0' ? 'text-danger' : 'text-primary' }}">
