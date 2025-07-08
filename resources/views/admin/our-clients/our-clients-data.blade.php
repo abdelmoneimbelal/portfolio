@@ -19,7 +19,7 @@
                         <tr>
                             <td>
                                 @if($record->image)
-                                    <img src="{{ asset($record->image) }}" alt="{{ $record->name }}" 
+                                    <img src="{{ str_starts_with($record->image, 'storage/') ? Storage::url(str_replace('storage/', '', $record->image)) : asset($record->image) }}" alt="{{ $record->name }}" 
                                          style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
                                 @else
                                     <div style="width: 50px; height: 50px; background: #f0f0f0; border-radius: 5px; display: flex; align-items: center; justify-content: center;">

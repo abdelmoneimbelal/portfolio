@@ -14,7 +14,7 @@
         @if ($current_image)
             <div class="mb-2">
                 <p class="text-muted small">Current Image:</p>
-                <img src="{{ asset($current_image) }}" alt="Current" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px;">
+                <img src="{{ str_starts_with($current_image, 'storage/') ? Storage::url(str_replace('storage/', '', $current_image)) : asset($current_image) }}" alt="Current" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px;">
             </div>
         @endif
         <input type="file" class="form-control" wire:model='image' accept="image/*" />
