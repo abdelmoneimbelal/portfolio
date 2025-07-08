@@ -131,7 +131,7 @@
 
         <li class="menu-item {{ Route::is('admin.our-clients') ? ' active' : '' }}">
             <a href="{{ route('admin.our-clients') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-buildings"></i>
+                <i class="menu-icon tf-icons bx bx-user-circle"></i>
                 <div data-i18n="Our Clients">Our Clients</div>
             </a>
         </li>
