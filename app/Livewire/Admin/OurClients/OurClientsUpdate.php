@@ -43,7 +43,7 @@ class OurClientsUpdate extends Component
         // Handle image upload
         if ($this->image) {
             $imageName = time() . '.' . $this->image->getClientOriginalExtension();
-            $this->image->storeAs('public/our-clients', $imageName);
+            $this->image->storeAs('our-clients', $imageName, 'public');
             $data['image'] = 'storage/our-clients/' . $imageName;
         } else {
             // Keep the current image
