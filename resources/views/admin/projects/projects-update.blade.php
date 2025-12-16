@@ -83,7 +83,130 @@
 
     <div class="col-md-12 mb-0 mt-2">
         <label class="form-label">Description</label>
-        <textarea type="number" class="form-control" placeholder="Description" wire:model='description'></textarea>
+        <div wire:ignore>
+            <textarea id="description2" class="form-control" placeholder="Description"></textarea>
+        </div>
         @include('admin.error', ['property' => 'description'])
     </div>
 </x-edit-model>
+
+@push('styles')
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
+@endpush
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+    <script>
+        (function() {
+            'use strict';
+            
+            if (typeof jQuery === 'undefined') {
+                console.error('jQuery is required for Summernote');
+                return;
+            }
+
+            var $ = jQuery;
+            var isInitialized = false;
+
+            function initSummernote() {
+                var $textarea = $('#description2');
+                
+                if ($textarea.length && !isInitialized) {
+                    // Get description from Livewire
+                    var descriptionContent = @this.get('description') || '';
+                    
+                    // Destroy if exists
+                    if ($textarea.summernote) {
+                        try {
+                            $textarea.summernote('destroy');
+                        } catch(e) {}
+                    }
+                    
+                    // Initialize
+                    $textarea.summernote({
+                        height: 300,
+                        toolbar: [
+                            ['style', ['style']],
+                            ['font', ['bold', 'underline', 'clear', 'italic', 'strikethrough']],
+                            ['alignment', ['alignLeft', 'alignCenter', 'alignRight', 'alignJustify']],
+                            ['blockquote', ['blockquote']],
+                            ['fontname', ['fontname']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph', 'height', 'lineheight']],
+                            ['fontsize', ['fontsize']],
+                            ['height', ['height']],
+                            ['table', ['table']],
+                            ['insert', ['link', 'picture', 'video']],
+                            ['view', ['fullscreen', 'codeview', 'help']],
+                            ['undo', ['undo', 'redo']]
+                        ],
+                        callbacks: {
+                            onChange: function(contents, $editable) {
+                                @this.set('description', contents);
+                            }
+                        }
+                    });
+                    
+                    // Set content
+                    if (descriptionContent) {
+                        setTimeout(function() {
+                            $textarea.summernote('code', descriptionContent);
+                        }, 200);
+                    }
+                    
+                    isInitialized = true;
+                }
+            }
+
+            function destroySummernote() {
+                var $textarea = $('#description2');
+                if ($textarea.length && $textarea.summernote) {
+                    try {
+                        $textarea.summernote('destroy');
+                    } catch(e) {}
+                    isInitialized = false;
+                }
+            }
+
+            // When modal is shown
+            $(document).on('shown.bs.modal', '#editModal', function() {
+                isInitialized = false;
+                setTimeout(initSummernote, 400);
+            });
+
+            // When modal is hidden
+            $(document).on('hidden.bs.modal', '#editModal', function() {
+                destroySummernote();
+            });
+
+            // When Livewire updates
+            document.addEventListener('livewire:init', function() {
+                Livewire.hook('morph.updated', ({ el, component }) => {
+                    setTimeout(function() {
+                        var editModal = document.getElementById('editModal');
+                        if (editModal && editModal.classList.contains('show')) {
+                            var $textarea = $('#description2');
+                            if ($textarea.length) {
+                                if (!$textarea.next('.note-editor').length) {
+                                    // Not initialized, initialize it
+                                    isInitialized = false;
+                                    initSummernote();
+                                } else {
+                                    // Already initialized, just update content if needed
+                                    var descriptionContent = @this.get('description') || '';
+                                    if (descriptionContent) {
+                                        var currentContent = $textarea.summernote('code');
+                                        // Only update if different to avoid cursor issues
+                                        if (currentContent.trim() !== descriptionContent.trim()) {
+                                            $textarea.summernote('code', descriptionContent);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }, 600);
+                });
+            });
+        })();
+    </script>
+@endpush

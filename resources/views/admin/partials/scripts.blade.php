@@ -20,6 +20,9 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 
+@stack('scripts')
+
+
 <script>
      document.addEventListener("DOMContentLoaded", () => {
         Livewire.hook('morph.updated', (el, component) => {
