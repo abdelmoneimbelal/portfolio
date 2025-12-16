@@ -58,7 +58,7 @@
                             <h6 class="mb-0"><i class="bx bx-file-text me-2"></i>Description</h6>
                         </div>
                         <div class="card-body">
-                            <p class="mb-0" style="line-height: 1.6; color: #555;">{{ $project->description }}</p>
+                            <p class="mb-0" style="line-height: 1.6; color: #555;">{!! $project->description !!}</p>
                         </div>
                     </div>
                 </div>
