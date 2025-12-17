@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,41 +64,42 @@ Route::prefix('/')->name('front.')->group(function () {
 Route::prefix('/admin')->name('admin.')->group(function () {
 
     Route::middleware('admin')->group(function () {
+
         //============================index============================
-        Route::view('', 'admin.index')->name('index');
+        Route::view('', 'admin.index' ,['settings' => Setting::first()])->name('index');
 
         //============================settings============================
-        Route::view('settings', 'admin.settings.index')->name('settings');
+        Route::view('settings', 'admin.settings.index',['settings' => Setting::first()])->name('settings');
 
         //============================about-us============================
-        Route::view('about-us', 'admin.about-us.index')->name('about-us');
+        Route::view('about-us', 'admin.about-us.index',['settings' => Setting::first()])->name('about-us');
 
         //============================skills============================
-        Route::view('skills', 'admin.skills.index')->name('skills');
+        Route::view('skills', 'admin.skills.index',['settings' => Setting::first()])->name('skills');
 
         //============================Subscribers============================
-        Route::view('subscribers',  'admin.subscribers.index')->name('subscribers');
+        Route::view('subscribers',  'admin.subscribers.index',['settings' => Setting::first()])->name('subscribers');
 
         //============================Counters============================
-        Route::view('counters',  'admin.counters.index')->name('counters');
+        Route::view('counters',  'admin.counters.index',['settings' => Setting::first()])->name('counters');
 
         //============================Services============================
-        Route::view('services',  'admin.services.index')->name('services');
+        Route::view('services',  'admin.services.index',['settings' => Setting::first()])->name('services');
 
         //============================Messages============================
-        Route::view('messages',  'admin.messages.index')->name('messages');
+        Route::view('messages',  'admin.messages.index',['settings' => Setting::first()])->name('messages');
 
         //============================Categories============================
-        Route::view('categories',  'admin.categories.index')->name('categories');
+        Route::view('categories',  'admin.categories.index',['settings' => Setting::first()])->name('categories');
 
         //============================Our Clients============================
-        Route::view('our-clients',  'admin.our-clients.index')->name('our-clients');
+        Route::view('our-clients',  'admin.our-clients.index',['settings' => Setting::first()])->name('our-clients');
 
         //============================Projects============================
-        Route::view('projects',  'admin.projects.index')->name('projects');
+        Route::view('projects',  'admin.projects.index',['settings' => Setting::first()])->name('projects');
 
         //============================Sliders============================
-        Route::view('sliders',  'admin.sliders.index')->name('sliders');
+        Route::view('sliders',  'admin.sliders.index',['settings' => Setting::first()])->name('sliders');
 
     });
     //============================login============================

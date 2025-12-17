@@ -34,6 +34,13 @@
         @enderror
     </div>
     <div class="col-md-6 mt-2">
+        <label class="form-label">Website</label>
+        <input type="url" class="form-control" placeholder="Website URL" wire:model='settings.website' />
+        @error('settings.website')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+    <div class="col-md-6 mt-2">
         <label class="form-label">Facebook</label>
         <input type="text" class="form-control" placeholder="Facebook" wire:model='settings.facebook' />
         @error('settings.facebook')

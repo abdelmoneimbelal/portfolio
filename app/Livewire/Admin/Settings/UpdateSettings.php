@@ -24,6 +24,7 @@ class UpdateSettings extends Component
             'settings.email' => 'required|email',
             'settings.phone' => 'required',
             'settings.address' => 'required',
+            'settings.website' => 'nullable|url',
             'settings.facebook' => 'nullable|url',
             'settings.twitter' => 'nullable|url',
             'settings.linkedin' => 'nullable|url',
