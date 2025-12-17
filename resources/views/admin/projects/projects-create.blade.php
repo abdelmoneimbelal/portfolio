@@ -10,6 +10,13 @@
         @include('admin.error', ['property' => 'link'])
     </div>
 
+    <div class="col-md-12 mb-0 mt-2">
+        <label class="form-label">Summary</label>
+        <textarea class="form-control" placeholder="Summary" wire:model='summary' rows="3"></textarea>
+        <small class="text-muted">Brief summary of the project (max 500 characters)</small>
+        @include('admin.error', ['property' => 'summary'])
+    </div>
+
     <div class="col-md-6 mb-0 mt-2" x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true"
         x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false"
         x-on:livewire-upload-error="uploading = false"

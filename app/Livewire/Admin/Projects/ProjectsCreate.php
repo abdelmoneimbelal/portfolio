@@ -12,7 +12,7 @@ class ProjectsCreate extends Component
 {
     use WithFileUploads;
 
-    public $name, $description, $link, $image, $category_id, $categories, $gallery_images = [];
+    public $name, $summary, $description, $link, $image, $category_id, $categories, $gallery_images = [];
 
     public function mount()
     {
@@ -23,6 +23,7 @@ class ProjectsCreate extends Component
     {
         return [
             'name' => 'required',
+            'summary' => 'nullable|string|max:500',
             'description' => 'required|string',
             'link' => 'nullable|url',
             'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
@@ -67,7 +68,7 @@ class ProjectsCreate extends Component
             }
         }
         
-        $this->reset(['name', 'description', 'link', 'image', 'category_id', 'gallery_images']);
+        $this->reset(['name', 'summary', 'description', 'link', 'image', 'category_id', 'gallery_images']);
         // hide modal
         $this->dispatch('createModalToggle');
         // refresh skills data component

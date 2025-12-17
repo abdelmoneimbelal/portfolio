@@ -51,6 +51,18 @@
                     </div>
                 </div>
 
+                <!-- Project Summary -->
+                <div class="col-12 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="bx bx-file-text me-2"></i>Summary</h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-0" style="line-height: 1.6; color: #555;">{!! $project->summary !!}</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Project Description -->
                 <div class="col-12 mb-3">
                     <div class="card">

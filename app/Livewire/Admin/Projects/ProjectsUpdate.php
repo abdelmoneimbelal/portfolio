@@ -12,7 +12,7 @@ class ProjectsUpdate extends Component
 {
     use WithFileUploads;
 
-    public $project, $name, $description, $link, $image, $category_id, $categories, $gallery_images = [];
+    public $project, $name, $summary, $description, $link, $image, $category_id, $categories, $gallery_images = [];
 
     public function mount()
     {
@@ -26,6 +26,7 @@ class ProjectsUpdate extends Component
         // fill $project with the eloquent model of the same id
         $this->project = Project::find($id);
         $this->name = $this->project->name;
+        $this->summary = $this->project->summary;
         $this->description = $this->project->description;
         $this->link = $this->project->link;
         $this->category_id = $this->project->category_id;
@@ -39,6 +40,7 @@ class ProjectsUpdate extends Component
         return [
             'name' => 'required|string',
             // 'name' => 'required|string|unique:projects,name,' . $this->project?->id,
+            'summary' => 'nullable|string|max:500',
             'description' => 'required|string',
             'link' => 'nullable|url',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
