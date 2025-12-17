@@ -68,7 +68,9 @@
 
     <div class="col-md-12 mt-2">
         <label class="form-label">Description</label>
-        <textarea class="form-control" wire:model='aboutUs.description' rows="4" placeholder="Description"></textarea>
+        <div wire:ignore>
+            <textarea id="description" class="form-control" placeholder="Description"></textarea>
+        </div>
         @error('aboutUs.description')
             <span class="text-danger">{{ $message }}</span>
         @enderror
@@ -76,7 +78,9 @@
 
     <div class="col-md-12 mt-2">
         <label class="form-label">Mission</label>
-        <textarea class="form-control" wire:model='aboutUs.mission' rows="3" placeholder="Mission"></textarea>
+        <div wire:ignore>
+            <textarea id="mission" class="form-control" placeholder="Mission"></textarea>
+        </div>
         @error('aboutUs.mission')
             <span class="text-danger">{{ $message }}</span>
         @enderror
@@ -84,7 +88,9 @@
 
     <div class="col-md-12 mt-2">
         <label class="form-label">Vision</label>
-        <textarea class="form-control" wire:model='aboutUs.vision' rows="3" placeholder="Vision"></textarea>
+        <div wire:ignore>
+            <textarea id="vision" class="form-control" placeholder="Vision"></textarea>
+        </div>
         @error('aboutUs.vision')
             <span class="text-danger">{{ $message }}</span>
         @enderror
@@ -92,7 +98,9 @@
 
     <div class="col-md-12 mt-2">
         <label class="form-label">Values</label>
-        <textarea class="form-control" wire:model='aboutUs.values' rows="3" placeholder="Values"></textarea>
+        <div wire:ignore>
+            <textarea id="values" class="form-control" placeholder="Values"></textarea>
+        </div>
         @error('aboutUs.values')
             <span class="text-danger">{{ $message }}</span>
         @enderror
@@ -103,3 +111,172 @@
     </div>
 </form>
 
+@push('styles')
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
+@endpush
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+    <script>
+        (function() {
+            'use strict';
+            
+            if (typeof jQuery === 'undefined') {
+                console.error('jQuery is required for Summernote');
+                return;
+            }
+
+            var $ = jQuery;
+            var editors = {
+                description: false,
+                mission: false,
+                vision: false,
+                values: false
+            };
+
+            function initSummernote(editorId, propertyName) {
+                var $textarea = $('#' + editorId);
+                
+                if ($textarea.length && !editors[editorId]) {
+                    // Get content from Livewire
+                    var content = @this.get('aboutUs.' + propertyName) || '';
+                    
+                    // Destroy if exists
+                    if ($textarea.summernote) {
+                        try {
+                            $textarea.summernote('destroy');
+                        } catch(e) {}
+                    }
+                    
+                    // Initialize
+                    $textarea.summernote({
+                        height: 300,
+                        toolbar: [
+                            ['style', ['style']],
+                            ['font', ['bold', 'underline', 'clear', 'italic', 'strikethrough']],
+                            ['alignment', ['alignLeft', 'alignCenter', 'alignRight', 'alignJustify']],
+                            ['blockquote', ['blockquote']],
+                            ['fontname', ['fontname']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph', 'height', 'lineheight']],
+                            ['fontsize', ['fontsize']],
+                            ['height', ['height']],
+                            ['table', ['table']],
+                            ['insert', ['link', 'picture', 'video']],
+                            ['view', ['fullscreen', 'codeview', 'help']],
+                            ['undo', ['undo', 'redo']]
+                        ],
+                        callbacks: {
+                            onChange: function(contents, $editable) {
+                                // Use debounce to avoid too many updates
+                                clearTimeout(window.summernoteTimeout);
+                                window.summernoteTimeout = setTimeout(function() {
+                                    @this.set('aboutUs.' + propertyName, contents);
+                                }, 300);
+                            }
+                        }
+                    });
+                    
+                    // Set content
+                    if (content) {
+                        setTimeout(function() {
+                            $textarea.summernote('code', content);
+                        }, 200);
+                    }
+                    
+                    editors[editorId] = true;
+                }
+            }
+
+            function destroySummernote(editorId) {
+                var $textarea = $('#' + editorId);
+                if ($textarea.length && $textarea.summernote) {
+                    try {
+                        $textarea.summernote('destroy');
+                    } catch(e) {}
+                    editors[editorId] = false;
+                }
+            }
+
+            function initAllEditors() {
+                initSummernote('description', 'description');
+                initSummernote('mission', 'mission');
+                initSummernote('vision', 'vision');
+                initSummernote('values', 'values');
+            }
+
+            function destroyAllEditors() {
+                destroySummernote('description');
+                destroySummernote('mission');
+                destroySummernote('vision');
+                destroySummernote('values');
+            }
+
+            // Initialize when page loads
+            $(document).ready(function() {
+                setTimeout(initAllEditors, 400);
+            });
+
+            // When Livewire updates
+            document.addEventListener('livewire:init', function() {
+                Livewire.hook('morph.updated', ({ el, component }) => {
+                    setTimeout(function() {
+                        // Reinitialize editors if needed
+                        var $description = $('#description');
+                        var $mission = $('#mission');
+                        var $vision = $('#vision');
+                        var $values = $('#values');
+                        
+                        if ($description.length && !$description.next('.note-editor').length) {
+                            editors.description = false;
+                            initSummernote('description', 'description');
+                        }
+                        if ($mission.length && !$mission.next('.note-editor').length) {
+                            editors.mission = false;
+                            initSummernote('mission', 'mission');
+                        }
+                        if ($vision.length && !$vision.next('.note-editor').length) {
+                            editors.vision = false;
+                            initSummernote('vision', 'vision');
+                        }
+                        if ($values.length && !$values.next('.note-editor').length) {
+                            editors.values = false;
+                            initSummernote('values', 'values');
+                        }
+                        
+                        // Update content if changed from Livewire
+                        var descriptionContent = @this.get('aboutUs.description') || '';
+                        var missionContent = @this.get('aboutUs.mission') || '';
+                        var visionContent = @this.get('aboutUs.vision') || '';
+                        var valuesContent = @this.get('aboutUs.values') || '';
+                        
+                        if ($description.summernote && descriptionContent) {
+                            var currentDesc = $description.summernote('code');
+                            if (currentDesc.trim() !== descriptionContent.trim()) {
+                                $description.summernote('code', descriptionContent);
+                            }
+                        }
+                        if ($mission.summernote && missionContent) {
+                            var currentMission = $mission.summernote('code');
+                            if (currentMission.trim() !== missionContent.trim()) {
+                                $mission.summernote('code', missionContent);
+                            }
+                        }
+                        if ($vision.summernote && visionContent) {
+                            var currentVision = $vision.summernote('code');
+                            if (currentVision.trim() !== visionContent.trim()) {
+                                $vision.summernote('code', visionContent);
+                            }
+                        }
+                        if ($values.summernote && valuesContent) {
+                            var currentValues = $values.summernote('code');
+                            if (currentValues.trim() !== valuesContent.trim()) {
+                                $values.summernote('code', valuesContent);
+                            }
+                        }
+                    }, 600);
+                });
+            });
+        })();
+    </script>
+@endpush
